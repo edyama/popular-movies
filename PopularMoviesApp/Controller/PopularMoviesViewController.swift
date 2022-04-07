@@ -15,7 +15,7 @@ class PopularMoviesViewController: UIViewController {
     
     // MARK: - Properties
     
-    var popularMovies = [Movie]()
+    var popularMovies = [Result]()
     
     // MARK: - Life Cycle
     
@@ -35,6 +35,8 @@ class PopularMoviesViewController: UIViewController {
     }
     
     func searchMovies() {
+        let popularMoviesURL = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=533b1b601b375c106c77d8a57dff14dd")!
+        
         textField.resignFirstResponder()
         
         guard let text = textField.text, !text.isEmpty else { return }
@@ -43,7 +45,7 @@ class PopularMoviesViewController: UIViewController {
         
         popularMovies.removeAll()
         
-        URLSession.shared.dataTask(with: URLRequest(url: URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=533b1b601b375c106c77d8a57dff14dd&language=en-US&page=1")!), completionHandler: {data, response, error in
+        URLSession.shared.dataTask(with: URLRequest(url: popularMoviesURL), completionHandler: {data, response, error in
             guard let data = data, error == nil else {
                 return
             }

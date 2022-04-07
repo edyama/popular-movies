@@ -14,7 +14,6 @@
 		90B79C2D27FE765A0092047A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90B79C2C27FE765A0092047A /* Assets.xcassets */; };
 		90B79C3027FE765B0092047A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B79C2E27FE765B0092047A /* LaunchScreen.storyboard */; };
 		90B79C3827FE76C80092047A /* PopularMoviesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B79C3727FE76C80092047A /* PopularMoviesData.swift */; };
-		90B79C3D27FE78BD0092047A /* PopularMoviesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B79C3C27FE78BD0092047A /* PopularMoviesManager.swift */; };
 		90B79C4227FE81350092047A /* PopularMovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B79C4027FE81350092047A /* PopularMovieTableViewCell.swift */; };
 		90B79C4327FE81350092047A /* PopularMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90B79C4127FE81350092047A /* PopularMovieTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -29,7 +28,6 @@
 		90B79C2F27FE765B0092047A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90B79C3127FE765B0092047A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90B79C3727FE76C80092047A /* PopularMoviesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesData.swift; sourceTree = "<group>"; };
-		90B79C3C27FE78BD0092047A /* PopularMoviesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesManager.swift; sourceTree = "<group>"; };
 		90B79C4027FE81350092047A /* PopularMovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieTableViewCell.swift; sourceTree = "<group>"; };
 		90B79C4127FE81350092047A /* PopularMovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularMovieTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				90B79C3727FE76C80092047A /* PopularMoviesData.swift */,
-				90B79C3C27FE78BD0092047A /* PopularMoviesManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,7 +173,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				90B79C4227FE81350092047A /* PopularMovieTableViewCell.swift in Sources */,
-				90B79C3D27FE78BD0092047A /* PopularMoviesManager.swift in Sources */,
 				90B79C2827FE76580092047A /* PopularMoviesViewController.swift in Sources */,
 				90B79C2427FE76580092047A /* AppDelegate.swift in Sources */,
 				90B79C3827FE76C80092047A /* PopularMoviesData.swift in Sources */,

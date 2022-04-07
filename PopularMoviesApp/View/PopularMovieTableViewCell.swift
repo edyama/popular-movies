@@ -31,11 +31,11 @@ class PopularMovieTableViewCell: UITableViewCell {
         return UINib(nibName: "PopularMovieTableViewCell", bundle: nil)
     }
     
-    func configure(with model: Movie) {
+    func configure(with model: Result) {
         self.movieTitleLabel.text = model.title
-        self.movieYearLabel.text = model.release_date
+        self.movieYearLabel.text = model.releaseDate
         self.movieOverviewLabel.text = model.overview
-        let url = model.poster_path
+        let url = "https://image.tmdb.org/t/p/w154" + model.posterPath
         if let data = try? Data(contentsOf: URL(string: url)!) {
             self.moviePosterImageView.image = UIImage(data: data)
         }
