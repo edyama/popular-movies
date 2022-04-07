@@ -8,26 +8,26 @@
 import UIKit
 
 class PopularMoviesViewController: UIViewController {
-    // MARK: - Properties
+    // MARK: - Outlets
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var textField: UITextField!
     
-    var popularMovies = [Movie]()
+    // MARK: - Properties
     
-    // MARK: - Methods
+    var popularMovies = [Result]()
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.register(PopularMovieTableViewCell.nib(), forCellReuseIdentifier: PopularMovieTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         textField.delegate = self
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
+    
+    // MARK: - Methods
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchMovies()
@@ -35,7 +35,39 @@ class PopularMoviesViewController: UIViewController {
     }
     
     func searchMovies() {
+        let popularMoviesURL = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=533b1b601b375c106c77d8a57dff14dd")!
+        
         textField.resignFirstResponder()
+        
+        guard let text = textField.text, !text.isEmpty else { return }
+        
+        let query = text.replacingOccurrences(of: " ", with: "%20")
+        
+        popularMovies.removeAll()
+        
+        URLSession.shared.dataTask(with: URLRequest(url: popularMoviesURL), completionHandler: {data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            var result: PopularMoviesData?
+            do {
+                result = try JSONDecoder().decode(PopularMoviesData.self, from: data)
+            } catch {
+                print("error")
+            }
+            
+            guard let finalResult = result else { return }
+            
+            print("\(finalResult.results.first?.title)")
+            
+            let newMovies = finalResult.results
+            self.popularMovies.append(contentsOf: newMovies)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }).resume()
     }
 }
 
@@ -47,7 +79,9 @@ extension PopularMoviesViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: PopularMovieTableViewCell.identifier, for: indexPath) as! PopularMovieTableViewCell
+        cell.configure(with: popularMovies[indexPath.row])
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
